@@ -1,14 +1,27 @@
 import React from 'react'
+import {useState} from 'react'
 import Header from './components/Header'
+import FeedbackList from './components/FeedbackList'
+import FeedbackData from './data/FeedbackData'
+import Card from './components/shared/Card'
+import FeedbackStats from './components/FeedbackStats'
 
 function App() {
     const title = 'My Blogpost'
+    const [feedback, setFeedback] = useState(FeedbackData)
+
+    const deleteFeedback = (id) => {
+        if(window.confirm('Are you sure you want to delete this?')){
+            setFeedback(feedback.filter((item) => item.id !== id))
+        }
+    }
 
     return (
         <>
             <Header />
             <div className='container'>
-                <h1>{title.toUpperCase()}</h1>
+                <FeedbackStats feedback={feedback} />
+                <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
             </div>
         </>
     )

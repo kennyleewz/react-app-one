@@ -3,11 +3,10 @@ import {useState} from 'react'
 import Header from './components/Header'
 import FeedbackList from './components/FeedbackList'
 import FeedbackData from './data/FeedbackData'
-import Card from './components/shared/Card'
 import FeedbackStats from './components/FeedbackStats'
+import FeedbackForm from './components/FeedbackForm'
 
 function App() {
-    const title = 'My Blogpost'
     const [feedback, setFeedback] = useState(FeedbackData)
 
     const deleteFeedback = (id) => {
@@ -19,6 +18,7 @@ function App() {
     return (
         <>
             <Header />
+            <FeedbackForm />
             <div className='container'>
                 <FeedbackStats feedback={feedback} />
                 <FeedbackList feedback={feedback} handleDelete={deleteFeedback}/>
